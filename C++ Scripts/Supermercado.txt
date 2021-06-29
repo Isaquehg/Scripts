@@ -1,0 +1,18 @@
+batata
+0.25
+20
+pao frances
+0.5
+50
+bolacha
+5
+5
+sonho de valsa
+0.75
+10
+bolo de fuba
+7.5
+2
+morango
+15
+4
