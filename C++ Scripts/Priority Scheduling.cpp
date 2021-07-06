@@ -35,6 +35,7 @@ void sorting(dados cpu[], int n){
     }
 }
 int main(){
+    //DECLARAÇÕES
     ifstream arq;//var p arquivo
     dados cpu[100];//estrutura p dados base
     char narq[100];//nome do arquivo de entrada
