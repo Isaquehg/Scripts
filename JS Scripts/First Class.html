@@ -23,13 +23,24 @@
     <h1>Hey There!</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Cum tempore neque sapiente delectus odio, <br> illum accusamus dolorem doloribus voluptate <br> exercitationem ipsum tempora obcaecati minus natus <br> assumenda voluptatibus perferendis laboriosam quo.</p>
     <script>
-        window.prompt('How´re doing?')//asking - OK/CANCEL
-        window.alert('Hello World');//alert with OK
-        /*Windows Types:
-        window.alert('text');
-        window.confirm('text');
-        window.prompt('text');
-        Terminal: use node to call it*/
+        let name;
+        name = window.prompt('How are u? ');
+        window.alert('Welcome ' + name);//concatenating using +
+        /*
+        Windows Types:
+        window.alert('text'); - OK
+        window.confirm('text'); - OK/CANCEL
+        window.prompt('text'); - USER TEXT
+        
+        Terminal: use NODE to call it
+
+        var type: typeof var
+        Conversions:
+        -Number.parseInt()
+        -Number.parseFloat()
+        ps.: We can change the var type during the code!
+        (Dinamically typed language)
+        */
     </script>
 </body>
 </html>
