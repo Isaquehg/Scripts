@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Events</title>
+    <style>
+        body{
+            font: normal 20pt Arial;
+            color: rgb(0, 0, 0);
+        }
+        input{
+            font:  normal 18pt Arial;
+        }
+        div#res{
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sum between Two Numbers</h1>
+    <input type="number" name="n1" id="n1">
+    <input type="number" name="n2" id="n2">
+    <input type="button" value="sum" onclick="thesum()">
+    <div id="res"> Result </div>
+    <script>
+        function thesum(){
+            var v1 = window.document.getElementById('n1')
+            var v2 = window.document.querySelector('input#n2')
+            var result = window.document.getElementById('res')
+            var number1 = Number.parseFloat(v1.value)
+            var number2 = Number.parseFloat(v2.value)
+            var s = number1 + number2
+            result.innerHTML = `The sum between ${number1} and ${number2} is equal to <strong> ${s} </strong>`
+        }
+    </script>
+</body>
+</html>

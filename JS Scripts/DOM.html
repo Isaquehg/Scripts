@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        div#msg {
+            background: rgb(59, 55, 55);
+            color: whitesmoke;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basics of DOM</h1>
+    <p>Learning how <strong>DOM</strong> works!</p>
+    <!--Here I´ve used the event inside html, but we can create it in the script!-->
+    <div id="msg" onclick="clicked()" onmouseenter="mouseon()" onmouseleave="mouseout()">Click Here!</div>
+    <script>
+        var widget = window.document.getElementById('msg')
+        /*DOM events inside script:
+        widget.addEventListener('click', clicked)
+        widget.addEventListener('mouse on', mouseon)
+        widget.addEventListener('mouse out', mouseout)
+        */
+        function clicked(){
+            widget.innerText = 'Thanks for clicking!'
+            a.style.background = 'blue'
+        }
+        function mouseon(){
+            widget.innerText = 'Mouse is on the widget'
+        }
+        function mouseout(){
+            widget.innerText = 'Mouse out'
+        }
+        
+        /*
+        ps.: innerText replaces the current text!
+        DOM's Tree
+        getElementBy ():
+        -Tags
+        -ID
+        -Name
+        -Class
+        -Selector
+        */
+    </script>
+</body>
+</html>
