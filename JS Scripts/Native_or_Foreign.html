@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native or Foreign</title>
+</head>
+<body>
+    <h1>Are You Canadian?</h1>
+    <input type="Your country" name="country" id="country">
+    <input type="button" value="check" onclick="check_it()">
+    <div id="result"> </div>
+    <script>
+        function check_it(){
+            var country_txt = window.document.querySelector('input#country')
+            var country_lower = country_txt.toLowerCase()
+            result.innerHTML = 'You are '
+            if(country_lower == 'canada'){
+                result.innerHTML += '<p><strong>native!</strong></p>'
+            }
+            else{
+                result.innerHTML += '<strong>foreign</strong>'
+            }
+        }
+    </script>
+</body>
+</html>

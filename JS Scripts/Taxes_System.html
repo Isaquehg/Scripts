@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Taxes System</h1>
+    <input type="Car Speed" name="miles" id="miles">
+    <input type="button" value="check" onclick="taxes()">
+    <div id="res"> </div>
+    <script>
+        function taxes(){
+            var speed_txt = window.document.querySelector('input#miles')
+            var speed = parseFloat(speed_txt)
+            var result = window.document.querySelector('div#res')
+            res.innerHTML = `Your current speed is ${speed} mph`
+            if(speed > 65.0){
+                res.innerHTML += '<p>You will be taxed</p>'
+            }
+            else{
+                res.innerHTML += '<p>Everything <strong>OK!</strong></p>'
+            }
+        }
+    </script>
+</body>
+</html>
