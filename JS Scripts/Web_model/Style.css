@@ -1,0 +1,22 @@
+body {
+    background: rgb(141, 70, 141);
+    font: normal 16pt Arial;
+}
+header {
+    color: whitesmoke;
+    text-align: center;
+}
+section {
+    background: whitesmoke;
+    border-radius: 11px;
+    padding: 8px;
+    margin: auto;
+    width: 700px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.479);
+}
+footer {
+    color: whitesmoke;
+    text-align: center;
+    font-style: italic;
+    padding: 5px;
+}
