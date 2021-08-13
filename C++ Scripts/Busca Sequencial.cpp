@@ -9,10 +9,13 @@ int sequencial(int vet[], int tam, int x){//func p retornar posicao no vetor do 
         if(x == vet[y]){//se achar
             pos = y;
             passouaq = true;
-            return pos;
         }
-        else if(passouaq == false && y == (tam - 1))//se nao achar
-            return -1;
+    }
+    if(passouaq == true){
+        return pos;
+    }
+    else{
+        return -1;
     }
 }
 int main(){
