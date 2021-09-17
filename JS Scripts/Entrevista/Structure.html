@@ -1,0 +1,35 @@
+<html>
+
+<body>
+  <h1 class="verde">Sistema de notas</h1>
+  <p class="verde">Coloque seu nome e sua nota.</p>
+  
+  <form action="JavaScript:enviarDados()">
+    <label for="nome_input">Primeiro nome:</label><!--label junto ao input-->
+    <br>
+    <input type="text" id="nome_input" name="nome_input" value="">
+    <br>
+    <label for="nota_input">Primeira nota:</label>
+    <br>
+    <input type="text" id="nota_input" name="nota_input" value="">
+    <br><br>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <br>
+  
+  <table id="tabela">
+    <tr>
+      <th>Nome</th><!--table header-->
+      <th>Nota</th>
+      <th>Passou</th>
+    </tr>
+    <tr>
+      <td id="nome_celula"></td>
+      <td id="nota_celula"></td>
+      <td id="passou_celula"></td>
+    </tr>
+  </table>
+</body>
+
+</html>
