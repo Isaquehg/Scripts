@@ -8,23 +8,22 @@ struct dado{
 };
 
 int hash_aux(int k, int m){
-    int result = k % m;//formula
+    int result = k % m;//resultado da formula
     if(result < 0)
         result += m;
     return result;
 }
-int hash_probe(int k, int i, int m){
-    int aux = hash_aux(k, m);//valores da auxiliar
-    int h;//valor sondagem
-    h = (aux + i) % m;//formula
+int hash1(int k, int i, int m, int c1, int c2){
+    int result = hash_aux(k, m);//valor da auxiliar
+    int h = (result + c1 * i + c2 * (i * i)) % m; //formula
     return h;
 }
 //insertion
-int hash_insert(dado t[], int m, int k){
+int hash_insert(dado t[], int m, int k, int c1, int c2){
     int i = 0;
     int j;
     do{
-        j = hash_probe(k, i, m);//resultado sondagem
+        j = hash1(k, i, m, c1, c2);//resultado sondagem
         if(t[j].status != 1){//se tiver espaco
             t[j].k = k;
             t[j].status = 1;
@@ -35,11 +34,11 @@ int hash_insert(dado t[], int m, int k){
     }while (i != m);
     return -1;
 }
-int hash_search(dado T[], int k, int m){
+int hash_search(dado T[], int k, int m, int c1, int c2){
     int i = 0;//aux
     int j;//valor sondagem
     do{
-        j = hash_probe(k, i, m);//sondar slot
+        j = hash1(k, i, m, c1, c2);//sondar slot
         if(T[j].k == k)//se for o numero buscado
             return j;
         i ++;
@@ -53,9 +52,10 @@ int main(){
     int chave;//chaves inseridas
     int key;//chave buscada
     int pos;//posicao da chave buscada
+    int c1, c2;//aux
 
     //zerando tabela
-    cin >> tam;
+    cin >> tam >> c1 >> c2;
     for(int i = 0; i < tam; i ++){
         T[i].status = 0;
         T[i].k = -1;
@@ -63,13 +63,13 @@ int main(){
     //inserindo valores
     cin >> chave;
     while(chave != 0){
-        int x = hash_insert(T, tam, chave);
+        int x = hash_insert(T, tam, chave, c1, c2);
         cin >> chave;
     }
     //buscando chave
     cin >> key;
-    pos = hash_search(T, key, tam);
-
+    pos = hash_search(T, key, tam, c1, c2);
+    //output
     if(pos == -1)
         cout << "Chave " << key << " nao encontrada" << endl;
     else

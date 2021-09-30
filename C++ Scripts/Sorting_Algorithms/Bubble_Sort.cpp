@@ -32,7 +32,7 @@ int main(){
 
     //input
     cin >> vet[x];
-    while(vet[x] != 0){
+    while(x < 9){
         x ++;
         cin >> vet[x];
     }
