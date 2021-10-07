@@ -3,21 +3,25 @@ using namespace std;
 
 int main(){
     int *vet;//armazenamento
-    int *p;//pointer p vetor
+    int *p;//pointer p in
+    int *q;//pointer p out
     int tam;//tamanho vetor
     int i;//aux
     int x;//num a inserir
     //input
     cin >> tam;
     vet = new int[tam];//alocando
-    for(i = 0; i < tam; i ++){
-        cin >> x;
-        p = &x;
-        vet[i] = *p;
+    p = vet;
+    for(i=0;i<tam;i++){
+    cin >> *p;//vet[i]
+    p++;//iterando pelo vetor
     }
     //output
-    for(i = 0; i < tam; i ++)
-        cout << vet[i] << " ";
+    q = vet;
+    for(i = 0; i < tam; i ++){
+        cout << *q << " ";
+        q ++;
+    }
 
     delete [] vet;
 

@@ -4,20 +4,25 @@ using namespace std;
 
 int main(){
     int *vet;//vet p armazenamento
-    int *p;//pointer aux
+    int *p;//input pointer
+    int *q;//pointer p positivos e pares
     int i;//aux;
     int tam;//tamanho
     int pospar = 0;//numeros positivos e pares
     //input
     cin >> tam;
     vet = new int[tam];
-    for(i = 0; i < tam; i ++)
-        cin >> vet[i];
-    //encontrando positivos e pares
+    p = vet;
     for(i = 0; i < tam; i ++){
-        p = &vet[i];
-        if((*p > 0) && (*p % 2 == 0))
+        cin >> *p;
+        p ++;
+    }
+    //encontrando positivos e pares
+    q = vet;
+    for(i = 0; i < tam; i ++){
+        if((*q > 0) && (*q % 2 == 0))
             pospar ++;
+        q ++;
     }
     //output
     cout << pospar << endl;

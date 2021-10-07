@@ -6,18 +6,23 @@ using namespace std;
 int main(){
     int *vet = NULL;//vetor p armazenar
     int *p;//pointer p varrer
+    int *m;//pointer p media
     int tam;//tamanho vet
     int i;//aux
     double med = 0.0;//media dos valores
     //input
     cin >> tam;
     vet = new int[tam];//alocando
-    for(i = 0; i < tam; i ++)
-        cin >> vet[i];
-    //media
+    p = vet;
     for(i = 0; i < tam; i ++){
-        p = &vet[i];
-        med += *p;
+        cin >> *p;
+        p ++;
+    }
+    //media
+    m = vet;
+    for(i = 0; i < tam; i ++){
+        med += *m;
+        m ++;
     }
     med /= tam * 1.0;
     //output
@@ -25,7 +30,6 @@ int main(){
     cout << med << endl;
 
     delete [] vet;
-    delete p;
     
     return 0;
 }
