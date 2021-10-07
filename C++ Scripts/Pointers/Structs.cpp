@@ -8,7 +8,6 @@ struct info
     float price;
 };
 
-
 int main(){
     info *prod;
 
