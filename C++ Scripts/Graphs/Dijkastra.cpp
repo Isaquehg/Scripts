@@ -31,6 +31,7 @@ void dijkstra(list<no>adj[], int nVertices, int start, int end){
     int parent[100];//pai do vertice
     int distancia[100];//vetor p distancias
     bool intree[100];//se esta na arvore
+    list<int> stack;//pilha p resultado
     list<no>::iterator p;
     for(u = 0; u < nVertices; u ++){
         intree[u] = false;
@@ -61,14 +62,18 @@ void dijkstra(list<no>adj[], int nVertices, int start, int end){
     }
     //output
     cout << "Menor caminho: ";
-    for(u = parent[destino]; u > 0; u --){
-        if(parent[u] != -1){   
-            cout << parent[u] << " ";
-            custo += distancia[u];
-        }
+    stack.push_front(end);
+    u = end;
+    while(parent[u] != -1){
+        stack.push_front(parent[u]);
+        u = parent[u];
+    }
+    while(!stack.empty()){
+        cout << *stack.begin() << " ";
+        stack.pop_front();
     }
     cout << endl;
-    custo = distancia[destino];
+    custo = distancia[end];
     cout << "Custo: " << custo << endl;
 }
 

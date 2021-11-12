@@ -3,26 +3,42 @@
 
 using namespace std;
 
-struct no{
-    int v;//vertice
-};
+int f[100];//topological sorting vector
 
-void cria_aresta(list<no>adj[], int u, int v, int orientado){
-    no aux;//auxiliar
+void cria_aresta(list<int>adj[], int u, int v, int orientado){
+    int aux;//auxiliar
     //criando arestas
-    aux.v = v;
+    aux = v;
     adj[u].push_back(aux);
     //rota inversa(nao orientado)
     if(orientado == 0){
-        aux.v = u;
+        aux = u;
         adj[v].push_back(aux);
     }
 }
-void dfs(list<no>adj[], int nVertices){
+void dfs_visit(list<int>adj[], int u){
+    int t = 0;//time
+    int pi[100];//parent
+    int d[100];//instante em que vertice foi descoberto
+    char color[100];//g = gray, w = white, b = black
+    list<int>::iterator p;
+    color[u] = 'g';// White vertex u has just been discovered.
+    t += 1;
+    d[u] = t;
+    for(p = adj[u].begin(); p != adj[u].end(); p ++){ // Explore edge (u, v).
+        if(color[*p] == 'w'){
+            pi[*p] = u;
+            dfs_visit(adj, u);
+        }
+    }
+    color[u] = 'b'; // Blacken u; it is finished.
+    f[u] = t = t + 1;
+}
+void dfs(list<int>adj[], int nVertices){
     int u;//aux
     int t;//time
-    int pi[100];
-    char color[100];
+    int pi[100];//parent
+    char color[100];//discovery state
     for(u = 0; u < nVertices; u ++){
         color[u] = 'w';
         pi[u] = NULL;
@@ -34,42 +50,35 @@ void dfs(list<no>adj[], int nVertices){
         }
     }
 }
-void dfs_visit(list<no>adj[], int u){
-    int t = 0;//time
-    int pi[100];
-    int f[100];//vetor p ordenacao topologica
-    int d[100];
-    char color[100];//g = gray, w = white, b = black
-    list<no>::iterator p;
-    color[u] = 'g';// White vertex u has just been discovered.
-    t += 1;
-    d[u] = t;
-    for(p = adj[u].begin(); p != adj[u].end(); p ++){ // Explore edge (u, v).
-        if(color[v] == 'w'){
-            pi[v] = u;
-            dfs_visit(v);
+void ordenacao_topologica(int f[], int nVertices){
+    int ordem[100];//vetor ordenado
+    int maior = 0;//maior num de f[]
+    for(int j = 0; j < nVertices; j ++){
+        for(int i = 0; i < nVertices; i ++){
+            if(f[i] > maior)
+                ordem[j] = i;
         }
     }
-    color[u] = 'b'; // Blacken u; it is finished.
-    f[u] = t = t + 1;
-}
-void ordenacao_topologica(int f[], int nVertices){
-
+    for(int j = 0; j < nVertices; j ++)
+        cout << ordem[j] << " ";
+    cout << endl;
 }
 
 int main(){
-    list<no> adj[100];
+    list<int> adj[100];
     int nvertices;
     int orientado;//1 = orientado
     int u, v;//vertice de origem e destino
 
     //input
+    cin >> nvertices >> orientado;
     cin >> u >> v;
     while(u != -1 && v != -1){
         cria_aresta(adj, u, v, orientado);
         cin >> u >> v;
     }
-
+    dfs(adj, nvertices);
+    ordenacao_topologica(f, nvertices);
 
     return 0;
 }
