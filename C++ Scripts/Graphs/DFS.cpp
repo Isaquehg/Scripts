@@ -3,8 +3,6 @@
 
 using namespace std;
 
-int f[100];//topological sorting vector
-
 void cria_aresta(list<int>adj[], int u, int v, int orientado){
     int aux;//auxiliar
     //criando arestas
@@ -16,11 +14,27 @@ void cria_aresta(list<int>adj[], int u, int v, int orientado){
         adj[v].push_back(aux);
     }
 }
-void dfs_visit(list<int>adj[], int u){
-    int t = 0;//time
-    int pi[100];//parent
+void ordenacao_topologica(int f[], int nVertices){
+    int ordem[100];//sorted vector
+    int maior = 0;//greatest
+    int pos;//position
+    for(int j = 0; j < nVertices; j ++){
+        for(int i = 0; i < nVertices; i ++){
+            if(f[i] > maior){
+                maior = f[i];
+                ordem[j] = i;
+                pos = i;
+            }
+        }
+        f[pos] = 0;//removing added elements
+        maior = 0;
+    }
+    for(int j = 0; j < nVertices; j ++)
+        cout << ordem[j] << " ";
+    cout << endl;
+}
+void dfs_visit(list<int>adj[], int u, int f[], int &t, int pi[], char color[]){
     int d[100];//instante em que vertice foi descoberto
-    char color[100];//g = gray, w = white, b = black
     list<int>::iterator p;
     color[u] = 'g';// White vertex u has just been discovered.
     t += 1;
@@ -28,7 +42,7 @@ void dfs_visit(list<int>adj[], int u){
     for(p = adj[u].begin(); p != adj[u].end(); p ++){ // Explore edge (u, v).
         if(color[*p] == 'w'){
             pi[*p] = u;
-            dfs_visit(adj, u);
+            dfs_visit(adj, *p, f, t, pi, color);
         }
     }
     color[u] = 'b'; // Blacken u; it is finished.
@@ -38,30 +52,19 @@ void dfs(list<int>adj[], int nVertices){
     int u;//aux
     int t;//time
     int pi[100];//parent
-    char color[100];//discovery state
+    char color[100];//discovery state: White = undiscovered, Gray = discovered, Black = finished
+    int f[100];//topological sorting vector
     for(u = 0; u < nVertices; u ++){
         color[u] = 'w';
-        pi[u] = NULL;
+        pi[u] = -1;
     }
     t = 0;
     for(u = 0; u < nVertices; u ++){
         if(color[u] == 'w'){
-            dfs_visit(adj, u);
+            dfs_visit(adj, u, f, t, pi, color);
         }
     }
-}
-void ordenacao_topologica(int f[], int nVertices){
-    int ordem[100];//vetor ordenado
-    int maior = 0;//maior num de f[]
-    for(int j = 0; j < nVertices; j ++){
-        for(int i = 0; i < nVertices; i ++){
-            if(f[i] > maior)
-                ordem[j] = i;
-        }
-    }
-    for(int j = 0; j < nVertices; j ++)
-        cout << ordem[j] << " ";
-    cout << endl;
+    ordenacao_topologica(f, nVertices);
 }
 
 int main(){
@@ -77,8 +80,8 @@ int main(){
         cria_aresta(adj, u, v, orientado);
         cin >> u >> v;
     }
+    //depth first searching
     dfs(adj, nvertices);
-    ordenacao_topologica(f, nvertices);
 
     return 0;
 }
