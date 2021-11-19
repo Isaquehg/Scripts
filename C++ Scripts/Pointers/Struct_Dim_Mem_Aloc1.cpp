@@ -14,7 +14,7 @@ struct dados
 
 
 int main(){
-    dados *prova;//struct das notas
+    dados *prova = NULL;//struct das notas
 
     prova = new dados;//alocacao
     //input notas
